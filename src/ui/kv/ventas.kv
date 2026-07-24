@@ -1,0 +1,228 @@
+#:kivy 2.0
+#:import ScrollView kivy.uix.scrollview.ScrollView
+
+<VentasScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '10dp'
+        spacing: '10dp'
+        
+        # Encabezado
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            
+            Label:
+                text: 'Nueva Venta'
+                bold: True
+                font_size: '20sp'
+                size_hint_x: 0.7
+            
+            Button:
+                text: 'Menú'
+                size_hint_x: 0.3
+                on_press: app.root.ir_menu()
+        
+        # Búsqueda de producto
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '80dp'
+            spacing: '5dp'
+            
+            Label:
+                text: 'Código de Barras / Producto'
+                size_hint_y: 0.3
+                font_size: '12sp'
+            
+            BoxLayout:
+                size_hint_y: 0.7
+                spacing: '5dp'
+                
+                TextInput:
+                    id: txt_codigo
+                    multiline: False
+                    hint_text: 'Escanee código'
+                    on_text_validate: app.root.buscar_producto(self.text)
+                
+                Button:
+                    text: 'Buscar'
+                    size_hint_x: 0.25
+                    on_press: app.root.buscar_producto(txt_codigo.text)
+        
+        # Información del producto
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '100dp'
+            spacing: '5dp'
+            
+            canvas.before:
+                Color:
+                    rgba: 0.15, 0.15, 0.15, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            
+            padding: '10dp'
+            
+            Label:
+                text: f"Producto: {app.root.producto_actual}"
+                font_size: '14sp'
+                bold: True
+            
+            BoxLayout:
+                spacing: '20dp'
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.5
+                    
+                    Label:
+                        text: 'Precio'
+                        size_hint_y: 0.4
+                        font_size: '12sp'
+                    
+                    Label:
+                        id: lbl_precio
+                        text: app.root.precio_actual
+                        size_hint_y: 0.6
+                        font_size: '18sp'
+                        bold: True
+                        color: 0.31, 0.78, 0.47, 1  # Verde
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.5
+                    
+                    Label:
+                        text: 'Stock'
+                        size_hint_y: 0.4
+                        font_size: '12sp'
+                    
+                    Label:
+                        id: lbl_stock
+                        text: app.root.stock_actual
+                        size_hint_y: 0.6
+                        font_size: '18sp'
+                        bold: True
+        
+        # Cantidad
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            
+            Label:
+                text: 'Cantidad:'
+                size_hint_x: 0.3
+            
+            Button:
+                text: '-'
+                size_hint_x: 0.15
+                on_press: app.root.cambiar_cantidad(-1)
+            
+            TextInput:
+                id: txt_cantidad
+                text: '1'
+                multiline: False
+                input_filter: 'int'
+                size_hint_x: 0.4
+            
+            Button:
+                text: '+'
+                size_hint_x: 0.15
+                on_press: app.root.cambiar_cantidad(1)
+        
+        # Botón agregar
+        Button:
+            text: 'Agregar al Carrito'
+            size_hint_y: None
+            height: '50dp'
+            background_color: 0.11, 0.27, 0.53, 1
+            on_press: app.root.agregar_al_carrito()
+        
+        # Carrito
+        Label:
+            text: 'Carrito de Compras'
+            size_hint_y: None
+            height: '30dp'
+            font_size: '16sp'
+            bold: True
+        
+        ScrollView:
+            GridView:
+                id: grid_carrito
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: '5dp'
+        
+        # Totales
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '100dp'
+            spacing: '5dp'
+            
+            canvas.before:
+                Color:
+                    rgba: 0.11, 0.27, 0.53, 0.3
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            
+            padding: '10dp'
+            
+            BoxLayout:
+                Label:
+                    text: 'Subtotal:'
+                    size_hint_x: 0.6
+                
+                Label:
+                    id: lbl_subtotal
+                    text: '$0.00'
+                    size_hint_x: 0.4
+                    bold: True
+            
+            BoxLayout:
+                Label:
+                    text: 'Descuento:'
+                    size_hint_x: 0.6
+                
+                Label:
+                    id: lbl_descuento
+                    text: '-$0.00'
+                    size_hint_x: 0.4
+                    bold: True
+            
+            BoxLayout:
+                Label:
+                    text: 'TOTAL:'
+                    size_hint_x: 0.6
+                    bold: True
+                    font_size: '16sp'
+                
+                Label:
+                    id: lbl_total
+                    text: '$0.00'
+                    size_hint_x: 0.4
+                    bold: True
+                    font_size: '16sp'
+                    color: 0.31, 0.78, 0.47, 1
+        
+        # Botones de acción
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            
+            Button:
+                text: 'Limpiar'
+                on_press: app.root.limpiar_carrito()
+            
+            Button:
+                text: 'Completar Venta'
+                background_color: 0.31, 0.78, 0.47, 1
+                on_press: app.root.completar_venta()

@@ -1,0 +1,97 @@
+#:kivy 2.0
+#:import utils kivy.utils
+
+<LoginScreen>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.11, 0.27, 0.53, 1  # #1f4788
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        
+        # Logo/Título
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 0.3
+            pos_hint: {'x': 0, 'y': 0.7}
+            padding: '20dp'
+            
+            Label:
+                text: 'YeraPOV'
+                font_size: '48sp'
+                bold: True
+                color: 1, 1, 1, 1
+            
+            Label:
+                text: 'Sistema POS Mobile'
+                font_size: '18sp'
+                color: 0.8, 0.8, 0.8, 1
+        
+        # Formulario login
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 0.9, 0.5
+            pos_hint: {'center_x': 0.5, 'y': 0.15}
+            spacing: '15dp'
+            
+            canvas.before:
+                Color:
+                    rgba: 0.18, 0.18, 0.18, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20]
+            
+            padding: '20dp'
+            
+            # Usuario
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: '50dp'
+                
+                Label:
+                    text: 'Usuario'
+                    size_hint_y: 0.3
+                    color: 1, 1, 1, 1
+                    font_size: '14sp'
+                
+                TextInput:
+                    id: txt_usuario
+                    multiline: False
+                    size_hint_y: 0.7
+                    background_color: 0.2, 0.2, 0.2, 1
+                    foreground_color: 1, 1, 1, 1
+                    padding: '10dp'
+                    font_size: '16sp'
+            
+            # Contraseña
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: '50dp'
+                
+                Label:
+                    text: 'Contraseña'
+                    size_hint_y: 0.3
+                    color: 1, 1, 1, 1
+                    font_size: '14sp'
+                
+                TextInput:
+                    id: txt_contrasena
+                    multiline: False
+                    password: True
+                    size_hint_y: 0.7
+                    background_color: 0.2, 0.2, 0.2, 1
+                    foreground_color: 1, 1, 1, 1
+                    padding: '10dp'
+                    font_size: '16sp'
+            
+            # Botón login
+            Button:
+                text: 'Iniciar Sesión'
+                size_hint_y: None
+                height: '50dp'
+                background_color: 0.11, 0.27, 0.53, 1
+                on_press: app.root.realizar_login(txt_usuario.text, txt_contrasena.text)

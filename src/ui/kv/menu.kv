@@ -1,0 +1,74 @@
+#:kivy 2.0
+
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '20dp'
+        
+        # Encabezado
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '100dp'
+            spacing: '10dp'
+            
+            Label:
+                text: 'YeraPOV'
+                font_size: '32sp'
+                bold: True
+                color: 0.11, 0.27, 0.53, 1
+            
+            Label:
+                id: lbl_usuario
+                text: app.root.usuario_actual
+                font_size: '16sp'
+            
+            Label:
+                id: lbl_rol
+                text: app.root.rol_actual
+                font_size: '12sp'
+                color: 0.5, 0.5, 0.5, 1
+        
+        # Botones principales
+        GridLayout:
+            cols: 2
+            spacing: '15dp'
+            size_hint_y: None
+            height: '300dp'
+            
+            # Nuevo POS
+            Button:
+                text: '[size=18]Nuevo POS[/size]\n[size=12]Realizar venta[/size]'
+                markup: True
+                background_color: 0.11, 0.27, 0.53, 1
+                on_press: app.root.ir_ventas()
+            
+            # Inventario
+            Button:
+                text: '[size=18]Inventario[/size]\n[size=12]Ver productos[/size]'
+                markup: True
+                background_color: 0.31, 0.78, 0.47, 1
+                on_press: app.root.ir_inventario()
+            
+            # Buscar producto
+            Button:
+                text: '[size=18]Buscar[/size]\n[size=12]Por código[/size]'
+                markup: True
+                background_color: 0.2, 0.6, 0.8, 1
+                on_press: app.root.buscar_codigo()
+            
+            # Configuración
+            Button:
+                text: '[size=18]Ajustes[/size]\n[size=12]Opciones[/size]'
+                markup: True
+                background_color: 0.8, 0.6, 0.2, 1
+                on_press: app.root.configuracion()
+        
+        # Botón cerrar sesión
+        Button:
+            text: 'Cerrar Sesión'
+            size_hint_y: None
+            height: '50dp'
+            background_color: 0.8, 0.2, 0.2, 1
+            on_press: app.root.cerrar_sesion()

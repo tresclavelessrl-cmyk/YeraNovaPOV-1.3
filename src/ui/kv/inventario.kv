@@ -1,0 +1,50 @@
+#:kivy 2.0
+
+<InventarioScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '10dp'
+        spacing: '10dp'
+        
+        # Encabezado
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            
+            Label:
+                text: 'Inventario'
+                bold: True
+                font_size: '20sp'
+                size_hint_x: 0.7
+            
+            Button:
+                text: 'Menú'
+                size_hint_x: 0.3
+                on_press: app.root.ir_menu()
+        
+        # Búsqueda
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '5dp'
+            
+            TextInput:
+                id: txt_busqueda
+                hint_text: 'Buscar producto...'
+                multiline: False
+                on_text: app.root.filtrar_productos(self.text)
+            
+            Button:
+                text: 'Nuevo'
+                size_hint_x: 0.25
+                on_press: app.root.nuevo_producto()
+        
+        # Lista de productos
+        ScrollView:
+            GridView:
+                id: grid_productos
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: '5dp'
