@@ -1,0 +1,28 @@
+# Dependencias para Android (Kivy + Buildozer)
+Kivy==2.2.1
+KivyMD==1.2.0
+
+# ORM y Base de datos (compartido con Windows)
+SQLAlchemy==2.0.23
+
+# APIs Android nativas
+pyjnius==1.5.0
+plyer==2.1.0
+
+# Utilidades
+requests==2.31.0
+python-dotenv==1.0.0
+
+# Seguridad
+bcrypt==4.1.1
+PyJWT==2.8.1
+
+# Procesamiento de datos
+openpyxl==3.1.2
+
+# Barcode
+python-barcode==0.15.1
+
+# Logging
+colorama==0.4.6
+loguru==0.7.2
