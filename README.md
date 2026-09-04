@@ -263,6 +263,110 @@ Para reportar problemas o sugerencias:
 - Abre un [Issue](https://github.com/tresclavelessrl-cmyk/YeraPOV/issues)
 - Contacta: tresclavelessrl@ejemplo.com
 
----
+---Quiero convertir este proyecto YeraPOV, actualmente desarrollado en Python + PySide6 + SQLite, en una aplicación Android nativa.
 
-**Desarrollado por Tres Claveles S.R.L**
+OBJETIVO PRINCIPAL:
+Crear una aplicación Android llamada YeraNova POS, instalable mediante APK y compatible con Android 5.0 y superiores.
+
+REQUISITO CRÍTICO:
+La aplicación Android debe utilizar Kotlin + Jetpack Compose + Room/SQLite.
+NO utilizar PySide6 en Android.
+NO crear una aplicación web.
+NO utilizar WebView como sustituto de una aplicación Android nativa.
+
+COMPATIBILIDAD:
+- minSdk = 21 (Android 5.0/API 21)
+- targetSdk actualizado compatible con el proyecto
+- Java/JDK 17
+- Kotlin
+- Jetpack Compose
+- Room para base de datos local
+- Funcionamiento 100% offline
+
+UTILIZAR COMO REFERENCIA EL PROYECTO PYTHON EXISTENTE:
+
+main.py
+config.py
+src/database/
+src/models/
+src/services/
+src/ui/
+src/reports/
+src/utils/
+tests/
+
+ANALIZA TODO EL CÓDIGO PYTHON EXISTENTE ANTES DE CREAR LA VERSIÓN ANDROID.
+
+MAPEO DE ARQUITECTURA:
+
+Python:
+src/models/
+→ Kotlin data classes / Room entities
+
+src/database/
+→ Room Database + DAO
+
+src/services/
+→ Kotlin services/repositories
+
+src/ui/
+→ Jetpack Compose screens
+
+src/reports/
+→ generación/exportación de reportes compatible con Android
+
+SQLite:
+→ Room Database
+
+PySide6:
+→ reemplazar completamente por Jetpack Compose.
+
+FUNCIONES QUE DEBE CONSERVAR:
+
+1. Usuarios y autenticación.
+2. Productos.
+3. Inventario.
+4. Ventas.
+5. Caja.
+6. Reportes.
+7. Exportación.
+8. Respaldos cuando sean apropiados.
+9. Funcionamiento offline.
+
+INTERFAZ PRINCIPAL DE INVENTARIO:
+
+PRODUCTO | INICIO | ENTRADA | VENTA | FINAL | VENDIDO | PRECIO | IMPORTE
+
+FÓRMULAS:
+
+VENTA = INICIO + ENTRADA
+
+VENDIDO = VENTA - FINAL
+
+IMPORTE = VENDIDO × PRECIO
+
+TOTAL = suma de todos los IMPORTES
+
+El campo INICIO del siguiente día debe poder obtenerse automáticamente del FINAL del día anterior.
+
+REQUISITOS DE DATOS:
+- No eliminar datos existentes por defecto.
+- No utilizar fallbackToDestructiveMigration() para producción.
+- No insertar datos de demostración automáticamente.
+- La base de datos debe funcionar localmente y sin conexión a Internet.
+- Validar entradas numéricas y evitar cantidades negativas cuando no correspondan.
+- Mantener integridad de las operaciones de inventario, ventas y caja.
+
+ESTRUCTURA ANDROID DESEADA:
+
+YeraPOV/
+├── app/
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/.../
+│   │       │   ├── data/
+│   │       │   ├── database/
+│   │       │   ├── models/
+│   │       │   ├──
+
+**Desarrollado por YeraNovaTechnologies S.R.L**
