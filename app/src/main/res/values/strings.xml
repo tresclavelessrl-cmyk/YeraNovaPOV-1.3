@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YeraNova POS</string>
+    <string name="login_title">YeraNova POS</string>
+    <string name="login_username">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="login_error">Usuario o contraseña incorrectos</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="dashboard">Panel Principal</string>
+    <string name="inventory">Inventario</string>
+    <string name="sales">Ventas</string>
+    <string name="products">Productos</string>
+    <string name="cash">Caja</string>
+    <string name="reports">Reportes</string>
+    <string name="settings">Configuración</string>
+</resources>
