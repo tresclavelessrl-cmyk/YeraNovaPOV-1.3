@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <domain-config>
+        <domain name="databases">
+            <database name="yeranova_pos.db" backup="true" />
+        </domain>
+        <domain name="sharedpref"
+            includeFormat="true" />
+        <domain name="file-paths" />
+    </domain-config>
+</data-extraction-rules>
